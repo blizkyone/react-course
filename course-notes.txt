@@ -1,0 +1,88 @@
+a. Reason for the following in package.json:
+
+      "resolutions": {
+          "chokidar": "^3.4.0"
+        }
+
+      Warning when installing both babel-cli and live-server module about chokidar 2 in node 14+
+      https://github.com/webpack/webpack-dev-server/issues/2528
+
+b. At some point I had to install a lower version of Babel because of compatibility issues with webpack loader,
+and something related to babel-loader vs @babel/loader
+
+c. package.json "scripts" before webpack-dev-server:
+
+      "scripts": {
+        "serve": "live-server public/",
+        "build": "webpack --watch",
+        "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+      }
+
+d. Babel plugin "transform-class-properties" allows the following behavior in classes:
+  -declare properties outside a constructor function
+  -use arrow functions in constants as methods
+  -> React: we no longer use a constructor() in classes
+
+      class OldSyntax {
+          constructor() {
+              this.name = 'Mike'
+              this.getGreeting = this.getGreeting.bind(this)
+          }
+
+          getGreeting() {
+              return `Hi, I'm ${this.name}`
+          }
+      }
+
+      const oldSyntax = new OldSyntax()
+      const getGreeting = oldSyntax.getGreeting
+      console.log(getGreeting())
+
+      // ---------
+
+      class NewSyntax {
+          name = 'Jen'
+          getGreeting = () => {
+              return `Hi, I'm ${this.name}`
+          }
+      }
+
+      const newSyntax = new NewSyntax()
+      const newGetGreeting = newSyntax.getGreeting
+      console.log(newGetGreeting())
+
+e. Basic props.children constructo
+
+    const IndecisionApp = (props) => {
+        return (
+            <div>
+                <p>Header</p>
+                {props.children}
+                <p>Footer</p>
+            </div>
+        )
+    }
+
+    ReactDOM.render((
+        <IndecisionApp>
+            <div>
+                <p>template</p>
+            </div>
+        </IndecisionApp>
+    ), document.getElementById('app'))
+
+f. Implicit return on a functional component:
+
+        const Action = (props) => {
+            return (
+                <div>
+                </div>
+            )
+        }
+
+    the same as:
+
+        const Action = (props) => (
+                <div>
+                </div>
+            )
