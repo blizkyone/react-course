@@ -28,6 +28,7 @@
     "moment-locales-webpack-plugin": "^1.2.0",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
+    "numeral": "^2.0.6",
     "react": "^16.13.1",
     "react-addons-shallow-compare": "15.6.0",
     "react-dates": "12.7.0",
@@ -46,8 +47,8 @@
     "chokidar": "^3.4.0"
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.11",
     "live-server": "^1.2.1",
+    "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
   }
 }
