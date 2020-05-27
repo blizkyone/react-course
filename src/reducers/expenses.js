@@ -9,7 +9,6 @@ const expensesReducer = ( state = expensesDefaultState, action) => {
             ]
             // DON'T use state.push - it modifies 'state' directly. CAN use state.concat, as it returns a new array
         case 'REMOVE_EXPENSE':
-            console.log(`expense ${action.id} removed`)
             return state.filter(expense => expense.id !== action.id)
         case 'EDIT_EXPENSE':
             return state.map((expense) => {

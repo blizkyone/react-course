@@ -5,6 +5,7 @@ import AppRouter from './routers/AppRouters'
 import configureStore from './store/configureStore'
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
+import 'react-dates/lib/css/_datepicker.css'
 
 import { addExpense, editExpense, removeExpense } from './actions/expenses'
 import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from './actions/filters'
