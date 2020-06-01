@@ -59,3 +59,30 @@ export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 })
+
+//SET_EXPENSES
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+})
+
+// export const startSetExpenses
+export const startSetExpenses = () => {
+    // this function works because we have middleware / redux-thunk
+    // gets called with dispatch, so that dispatch may be called 
+    // after whatever we want to happen hapens - save data on firebase.
+    return (dispatch) => {
+        // important to return, so that you can call then on the function calling startSetExpenses
+        return db.ref('expenses').once('value').then((snapshot) => {
+            const expenses = []
+
+            snapshot.forEach((child => {
+                expenses.push({
+                    id: child.key,
+                    ...child.val()
+                })
+            }))
+            dispatch(setExpenses(expenses))
+        })
+    }
+}
