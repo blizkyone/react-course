@@ -1,13 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
 // So that 1rem = 10 pixels
 html {
     font-size: 62.5%
 }
  
 body {
+    color: $dark-gray;
     font-family: Helvetica, Arial, sans-serif;
     font-size: $m-size;
+    line-height: 1.6;
 }
-
+ 
 button {
     cursor: pointer;
 }
@@ -18,4 +24,4 @@ button:disabled {
 
 .is-active {
     font-weight: bold;
-}
+} 
